@@ -1,0 +1,4 @@
+input_strings: [a.bam, b.bam, c.bam]
+script:
+  class: File #ファイルを渡すときはこの書き方をする
+  path: ../cwl/run_QC.sh
