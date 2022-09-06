@@ -7,3 +7,18 @@
       checksum: sha1$2af1a59da667eb4aedb182248c1d91741df7e24d
       size: 31
   doc: Template for cwltest
+
+- job: job/scatterjob.yaml
+  tool: cwl/scatter-workflow.cwl
+  output:
+    output_directories:
+      - class: Directory
+        basename: a
+        listing: []
+      - class: Directory
+        basename: b
+        listing: []
+      - class: Directory
+        basename: c
+        listing: []
+  doc: test for scatter

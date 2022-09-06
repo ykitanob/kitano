@@ -13,7 +13,7 @@ inputs:
     type: File
 
 outputs:
-  - id: output_directorys
+  - id: output_directories
     type: Directory[] #インプットの文字列のDIRができる
     outputSource: wf/output
 
