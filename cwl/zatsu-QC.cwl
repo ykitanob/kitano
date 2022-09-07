@@ -14,7 +14,7 @@ outputs:
       type: array
       items: [File, Directory]
     outputBinding:
-      glob: "*"
+      glob: "*" #デバッグのためTMPから全部の出力ファイルをOUTPUTに持ってくるようにする
 
   - id: output
     type: Directory
