@@ -9,7 +9,7 @@ requirements:
 inputs:
   - id: input_strings
     type: string[] #複数の文字列を渡す
-  - id: script
+  - id: script1
     type: File
   - id: script2
     type: File
@@ -22,10 +22,10 @@ outputs:
     outputSource: wf/output #wfのアウトプット
 steps:
   - id: wf 
-    run: workflow.cwl
-    scatter: filename #分散実行したいパラメ―タ(id)
+    run: workflow.cwl #分散実行するワークフロー
+    scatter: filename #分散実行したいパラメ―タ(runに書いたwf内のid)
     in:
-        script: script 
+        script1: script1 
         script2: script2
         script3: script3
         filename: input_strings

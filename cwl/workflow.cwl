@@ -6,11 +6,11 @@ class: Workflow
 inputs:
   - id: filename
     type: string
+  - id: script1
+    type: File
   - id: script2
     type: File
   - id: script3
-    type: File
-  - id: script4
     type: File
 
 outputs:    
@@ -20,29 +20,29 @@ outputs:
 
 steps: 
     touch :
-        run: run_1touch.cwl
+        run: run_0touch.cwl
         in: 
             filename: filename #左a1.cwlのパラメータ、右このcwl内の
         out: [outputtest] #複数の時はカンマ区切りで記載する
 
-    run_2QC :
-        run: run_2QC.cwl
+    run_1QC :
+        run: run_1QC.cwl
+        in:
+            bam: touch/outputtest #touchステップのoutputtestを指定する
+            script: script1
+        out: [output] #QC.cwlのout 複数の時はカンマ区切りでかく
+    run_2subproc :
+        run: run_2subproc.cwl
         in:
             bam: touch/outputtest #touchステップのoutputtestを指定する
             script: script2
-        out: [output] #QC.cwlのout 複数の時はカンマ区切りでかく
-    run_3subproc :
-        run: run_3subproc.cwl
-        in:
-            bam: touch/outputtest #touchステップのoutputtestを指定する
-            script: script3
         out: [output_sub1] #subproc.cwlのout 複数の時はカンマ区切りでかく
 
     run_matome :
         run: run_matome.cwl
         in:
-            script: script4
+            script: script3
             BAM: touch/outputtest
-            QC: run_2QC/output #touchステップのoutputtestを指定する
-            subproc: run_3subproc/output_sub1
+            QC: run_1QC/output #touchステップのoutputtestを指定する
+            subproc: run_2subproc/output_sub1
         out: [fin_out] #subproc.cwlのout 複数の時はカンマ区切りでかく

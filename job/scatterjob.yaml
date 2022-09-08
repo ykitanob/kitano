@@ -1,12 +1,12 @@
 input_strings: [a.bam, b.bam, c.bam]
-script:
+script1:
   class: File #ファイルを渡すときはこの書き方をする
-  path: ../cwl/run_2QC.sh
+  path: ../run_scripts/run_1QC.sh #スクリプトファイルのパスを指定する
 
 script2:
-  class: File #ファイルを渡すときはこの書き方をする
-  path: ../cwl/run_3subproc.sh
+  class: File 
+  path: ../run_scripts/run_2subproc.sh
 
 script3:
-  class: File #ファイルを渡すときはこの書き方をする
-  path: ../cwl/run_matome.sh
+  class: File 
+  path: ../run_scripts/run_matome.sh
