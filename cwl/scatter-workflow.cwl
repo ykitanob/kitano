@@ -4,7 +4,7 @@ cwlVersion: v1.0
 class: Workflow
 
 requirements:
-  ScatterFeatureRequirement: {} ##書いておけばscatterをサポートしているか確認してくれる
+  ScatterFeatureRequirement: {} ##必要な機能を呼び出す。書いておけばscatterをサポートしているか確認してくれる
   SubworkflowFeatureRequirement: {}
 inputs:
   - id: input_strings
@@ -23,10 +23,10 @@ outputs:
 steps:
   - id: wf 
     run: workflow.cwl
-    scatter: aaa_txt #分散実行したいパラメ―タ(id)
+    scatter: filename #分散実行したいパラメ―タ(id)
     in:
         script: script 
         script2: script2
         script3: script3
-        aaa_txt: input_strings
+        filename: input_strings
     out: [output] #複数の結果が返ってくる

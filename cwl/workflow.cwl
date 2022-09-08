@@ -4,46 +4,45 @@ cwlVersion: v1.0
 class: Workflow
 
 inputs:
-  - id: aaa_txt
+  - id: filename
     type: string
-  - id: script
-    type: File
   - id: script2
     type: File
   - id: script3
+    type: File
+  - id: script4
     type: File
 
 outputs:    
   - id: output
     type: Directory #この型は、最後のステップの出力と揃える
-    outputSource: run_matome/fin_out
+    outputSource: run_matome/fin_out #run_matomeの出力がworkflowの出力になる
 
 steps: 
     touch :
-        run: a1.cwl
+        run: run_1touch.cwl
         in: 
-            aaa_txt: aaa_txt #左a1.cwlのパラメータ、右このcwl内の
-        out: [outputtest] #複数の時はカンマ区切り
+            filename: filename #左a1.cwlのパラメータ、右このcwl内の
+        out: [outputtest] #複数の時はカンマ区切りで記載する
 
-    run_QC :
-        run: zatsu-QCsh.cwl
-        in:
-            bam: touch/outputtest #touchステップのoutputtestを指定する
-            run_QC_sh: script
-        out: [output] #QC.cwlのout 複数の時はカンマ区切りでかく
-    run_subproc3 :
-        run: run_subproc.cwl
+    run_2QC :
+        run: run_2QC.cwl
         in:
             bam: touch/outputtest #touchステップのoutputtestを指定する
             script: script2
+        out: [output] #QC.cwlのout 複数の時はカンマ区切りでかく
+    run_3subproc :
+        run: run_3subproc.cwl
+        in:
+            bam: touch/outputtest #touchステップのoutputtestを指定する
+            script: script3
         out: [output_sub1] #subproc.cwlのout 複数の時はカンマ区切りでかく
-
 
     run_matome :
         run: run_matome.cwl
         in:
-            script: script3
+            script: script4
             BAM: touch/outputtest
-            QC: run_QC/output #touchステップのoutputtestを指定する
-            subproc: run_subproc3/output_sub1
+            QC: run_2QC/output #touchステップのoutputtestを指定する
+            subproc: run_3subproc/output_sub1
         out: [fin_out] #subproc.cwlのout 複数の時はカンマ区切りでかく

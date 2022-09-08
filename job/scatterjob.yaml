@@ -1,11 +1,11 @@
 input_strings: [a.bam, b.bam, c.bam]
 script:
   class: File #ファイルを渡すときはこの書き方をする
-  path: ../cwl/run_QC.sh
+  path: ../cwl/run_2QC.sh
 
 script2:
   class: File #ファイルを渡すときはこの書き方をする
-  path: ../cwl/run_subproc.sh
+  path: ../cwl/run_3subproc.sh
 
 script3:
   class: File #ファイルを渡すときはこの書き方をする

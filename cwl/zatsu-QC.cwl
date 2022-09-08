@@ -2,7 +2,7 @@
 # Generated from: run_QC.sh path/to/bam
 class: CommandLineTool
 cwlVersion: v1.0
-baseCommand: ./run_QC.sh
+baseCommand: ./run_2QC.sh
 arguments:
   - $(inputs.bam)
 inputs:
