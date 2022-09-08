@@ -1,0 +1,19 @@
+- job: job/cat1-job.yml
+  tool: cwl/1_cat.cwl
+  output:
+    out:
+      class: File
+      basename: catresult.txt
+      checksum: sha1$2bb0eb390cf3d324aec633a12f8b16d9b7421b1c
+      size: 24
+  doc: cat test
+
+- job: job/wf-job.yml
+  tool: cwl/0_workflow.cwl
+  output:
+    out:
+      class: File
+      basename: uniqresult.txt
+      checksum: sha1$cb09922f4cad19836b218451b7d0f4b83b94847a
+      size: 15
+  doc: wokflow test

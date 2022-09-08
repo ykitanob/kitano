@@ -1,0 +1,3 @@
+input_txt:
+  class: File
+  path: ../data/input.txt
