@@ -15,9 +15,7 @@ inputs:
 
 outputs:    
   - id: output
-    type:
-      type: array
-      items: [File, Directory]
+    type: Directory #この型は、最後のステップの出力と揃える
     outputSource: run_matome/fin_out
 
 steps: 

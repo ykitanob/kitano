@@ -23,8 +23,6 @@ inputs:
 
 outputs:
   - id: fin_out
-    type: 
-      type: array
-      items: [File, Directory]
+    type: Directory
     outputBinding:
       glob: "*"    #"$(inputs.bam.nameroot)/*" #あとで確認
